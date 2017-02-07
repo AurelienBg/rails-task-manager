@@ -1,6 +1,9 @@
 <h1>Tasks list</h1>
 
-<%= @tasks.each do |t| %>
-  <h3><%= t.name %> (<%= t.id %>)</h3>
-  <p> priority: <%= t.priority %> </p>p>
+<% @tasks.each do |t| %>
+  <h3><%= t.name %> (id: <%= t.id %>)</h3>
+  <p>priority: <%= t.priority %> </p>
+  <%= link_to "view", task_path(t) %>
+  <%= link_to "delete", task_path(t), method: :delete, data: { confirm: "Are you sure?" }
+  %>
 <% end %>
