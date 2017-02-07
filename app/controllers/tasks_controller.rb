@@ -5,9 +5,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.save
-    # no need for app/views/task/create.html.erb
-    redirect_to tasks_path
+    if @task.save
+      redirect_to tasks_path
+    else
+      render :new
+    end
   end
 
   def new
@@ -24,9 +26,15 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update(task_params)
-    # no need for app/views/task/create.html.erb
-    redirect_to tasks_path
+    # @task.update(task_params)
+    # redirect_to tasks_path
+
+    if @task.update(task_params)
+      redirect_to tasks_path
+    else
+      render :edit
+    end
+
   end
 
   def destroy
@@ -38,5 +46,4 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:name, :priority)
   end
-
 end

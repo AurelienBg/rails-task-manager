@@ -1,11 +1,3 @@
 <h1>Enter a new task</h1>
 
-<%= form_for(@task) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :priority %>
-  <%= f.text_field :priority %>
-
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>
